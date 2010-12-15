@@ -72,12 +72,8 @@ $.fn.jCarouselLite = function(options) {
     });
 
     if (!o.circular) {
-      if (o.btnPrev && start == 0) {
-        o.$btnPrev.addClass(o.btnDisabledClass);
-      }
-      if ( o.btnNext && start + o.visible >= itemLength ) {
-        o.$btnNext.addClass(o.btnDisabledClass);
-      }
+        o.$btnPrev.toggleClass(o.btnDisabledClass, (o.btnPrev && start == 0));
+        o.$btnNext.toggleClass(o.btnDisabledClass, (o.btnNext && start + o.visible >= itemLength));
     }
     if (o.btnGo) {
       $.each(o.btnGo, function(i, val) {
