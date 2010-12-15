@@ -72,6 +72,7 @@ $.fn.jCarouselLite = function(options) {
     });
 
     if (!o.circular) {
+        // CHANGED: use toggleClass to remove btnDisabledClass from element if given
         o.$btnPrev.toggleClass(o.btnDisabledClass, (o.btnPrev && start == 0));
         o.$btnNext.toggleClass(o.btnDisabledClass, (o.btnNext && start + o.visible >= itemLength));
     }
@@ -153,8 +154,8 @@ $.fn.jCarouselLite = function(options) {
         // If non-circular and to points beyond first or last, we change to first or last.
         } else {
           // Disable buttons when the carousel reaches the last/first, and enable when not
-          o.$btnPrev.toggleClass(o.btnDisabledClass, o.btnPrev && to <= 0);
-          o.$btnNext.toggleClass(o.btnDisabledClass, o.btnNext && to > itemLength-v);
+          o.$btnPrev.toggleClass(o.btnDisabledClass, (o.btnPrev && to <= 0));
+          o.$btnNext.toggleClass(o.btnDisabledClass, (o.btnNext && to >= itemLength - v)); // was: >
 
           if (to<0) {
             curr = 0;
