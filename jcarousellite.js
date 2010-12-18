@@ -66,6 +66,12 @@ $.fn.jCarouselLite = function(options) {
 
         o['$' + btn].bind('click.jc', function() {
           var step = index == 0 ? curr-o.scroll : curr+o.scroll;
+          
+          // do not advance if there are no more items to be seen
+          if (!o.circular && Math.abs(step) == li.length) {
+              return;
+          }
+          
           return go( step );
         });
       }
